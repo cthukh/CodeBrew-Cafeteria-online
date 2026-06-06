@@ -49,7 +49,7 @@
         <section id="inicio" class="container my-5 mb-6">
             <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 " id="hero">
                 <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                    <h1 class="">
+                    <h1>
                     Comienza tu dia con un buen café
                     </h1>
 
@@ -60,59 +60,15 @@
             </div>
         </section>
 
+        <div id="prueba">
+
+        </div>
+
         <!-- Productos -->
         <section id="productos" class="carrousel-container container pt-5">
             <h2>Nuestros Productos</h2>
-            <div class="carrousel">
-                <div class="slide">
-                    <div class="text-slide col-4">
-                        <h2>Cacao Overclock</h2>
-                        <p>
-                            El combustible perfecto para tus líneas de código. Una fusión equilibrada de nuestro intenso espresso con cacao amargo de alta pureza, coronado con un arte latte en forma de corazón. Textura cremosa, cuerpo denso y el toque amargo exacto para mantenerte enfocado.
-                        </p>
-                    </div>
-                    <img class="img-slide col-4" src="img/cafe_cacao.png" alt="cafe_cacao">
-                </div>
-
-                <div class="slide">
-                    <div class="text-slide col-4">
-                        <h2>Topología de Caramelo</h2>
-                        <p>
-                            Un espresso suave y cremoso coronado con una delicada malla de caramelo dorado. Esta nueva topologia te permitira sincronizar tu conocimiento con el de grandes programadores. Combinando dulzura, textura y energía en un perfecto equilibrio.
-                        </p>
-                    </div>
-                    <img class="img-slide col-4" src="img/cafe_caramel.png" alt="cafe_caramel">
-                </div>
-
-               <div class="slide">
-                    <div class="text-slide col-4">
-                        <h2>Choco Full Stack</h2>
-                        <p>
-                            Feature sobre Feature. Nuestro espresso de la casa servido sobre una base de chocolate, coronado con una generosa pila de crema batida y virutas de chocolate. El mismisimo Full Stack.
-                        </p>
-                    </div>
-                    <img class="img-slide col-4" src="img/cafe_choco.png" alt="cafe_choco">
-                </div>
-
-                <div class="slide">
-                    <div class="text-slide col-4">
-                        <h2>Kernel-Coffee-lts</h2>
-                        <p>
-                            Un clásico estandarizado. Café filtrado tradicional, balanceado y con el cuerpo ideal para mantener un flujo de trabajo constante. Simple, eficiente y compatible con cualquier rutina.
-                        </p>
-                    </div>
-                    <img class="img-slide col-4" src="img/cafe-cafe.png" alt="cafe_cafe">
-                </div>
-
-                <div class="slide">
-                    <div class="text-slide col-4">
-                        <h2>Ctrl + Té</h2>
-                        <p>
-                            El reinicio mental que necesitas cuando el entorno se llena de bugs. Una infusión herbal milenaria diseñada para alinear tus chakras, limpiar la caché de tu cerebro y restaurar tu estabilidad emocional tras un error de sintaxis inesperado.
-                        </p>
-                    </div>
-                    <img class="img-slide col-4" src="img/cafe-te.png" alt="cafe-te">
-                </div>
+            <div class="carrousel" id="carrousel">
+                
             </div>
         </section>
 
@@ -121,8 +77,8 @@
         <section id="ordenar" class="container my-5">
             <div class="mb-5 contenedor-orden rounded-3">
 
-                <div class="visorPedidos orden rounded-3 p-3 col-5" >
-                    <p class="text-center">
+                <div id="visorPedidos" class="visorPedidos orden rounded-3 p-3 col-5" >
+                    <p id="TextOtter" class="text-center">
                         Pide tu café para empezar el día, relajarse un momento, o simplemente disfrutar de la vida </br></br>
                         <i class="fa-solid fa-otter display-6"></i>
                     </p>
@@ -130,24 +86,12 @@
 
                 <div class="containerOrdenar orden rounded-3 p-3 col-5">
                     <label for="inputCafe">Escoja un sabor: </label>
-                    <form action="/mish">
+                    <div>
                         <select id="inputCafe" class="form-select mt-2">
                             <option selected disabled>Seleccionar tipo</option>
-                            <option value="cacao">Cacao Overclock</option>
-                            <option value="caramelo">Topología de Caramelo</option>
-                            <option value="chocolate">Choco Full Stack</option>
-                            <option value="cafe">Kernel-Coffee-lts</option>
-                            <option value="te">Ctrl + Té</option>
                         </select>
-                        <!-- Mucho texto -->
-                        <!-- <div class="form-check mt-3">
-                            <input class="form-check-input" type="checkbox" id="AgregarDulzor" >
-                            <label class="form-check-label" for="disabledFieldsetCheck">
-                              ¿Agregar dulzura?
-                            </label>
-                        </div> -->
-                        <button type="submit" class="btn btn-warning mt-5">Subir pedido</button>
-                    </form>
+                        <button id="buttonSelectCafe" class="btn btn-warning mt-5">Subir pedido</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -163,6 +107,7 @@
 
 
     <!-- Font Awesome para los iconos -->
+    <script src="script.js" defer></script>
     <script src="https://kit.fontawesome.com/7ab8bcd99c.js" crossorigin="anonymous"></script>
 </body>
 
