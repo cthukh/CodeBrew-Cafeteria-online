@@ -83,11 +83,16 @@ body {
 }
 
 
+footer {
+    text-align: center;
+}
+
 
 /* Breakpoint */
 @media (max-width: 768px) {
     #inicio {
         margin-top: 0px !important;
+        padding: 0 !important;
     }
     #hero {
         margin: 0 !important;
