@@ -70,6 +70,9 @@ body {
 .visorPedidos {
     background: linear-gradient(to top, whitesmoke 0%, #FFC507 100%);
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .containerOrdenar {
     background: linear-gradient(to top, whitesmoke 0%, #FFC507 100%);
@@ -127,7 +130,15 @@ footer {
     }
 
 
+    .contenedor-orden {
+        flex-direction: column;
+        height: 50vh !important; 
+    }
 
+    .orden {
+        width: 80vw;
+        height: 50%;
+    }
 
 
 

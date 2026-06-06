@@ -121,15 +121,18 @@
         <section id="ordenar" class="container my-5">
             <div class="mb-5 contenedor-orden rounded-3">
 
-                <div class="visorPedidos rounded-3 p-3 col-5" >
-                    <p>Pide tu café</p>
+                <div class="visorPedidos orden rounded-3 p-3 col-5" >
+                    <p class="text-center">
+                        Pide tu café para empezar el día, relajarse un momento, o simplemente disfrutar de la vida </br></br>
+                        <i class="fa-solid fa-otter display-6"></i>
+                    </p>
                 </div>
 
-                <div class="containerOrdenar rounded-3 p-3 col-5">
+                <div class="containerOrdenar orden rounded-3 p-3 col-5">
                     <label for="inputCafe">Escoja un sabor: </label>
                     <form action="/mish">
                         <select id="inputCafe" class="form-select mt-2">
-                            <option disabled>Seleccionar tipo</option>
+                            <option selected disabled>Seleccionar tipo</option>
                             <option value="cacao">Cacao Overclock</option>
                             <option value="caramelo">Topología de Caramelo</option>
                             <option value="chocolate">Choco Full Stack</option>
