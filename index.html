@@ -101,11 +101,27 @@
 
                 <div class="containerOrdenar orden rounded-3 p-3 col-5">
                     <label for="inputCafe">Escoja un sabor: </label>
-                    <div>
-                        <select id="inputCafe" class="form-select mt-2">
-                            <option selected disabled>Seleccionar tipo</option>
-                        </select>
-                        <button id="buttonSelectCafe" onclick="agregar_al_carro()" class="btn btn-warning mt-5">Agregar pedido</button>
+                    <div class="divTotalTipos">
+                        <div>
+
+                            <select id="inputCafe" class="form-select mt-2">
+                                <option selected disabled>Seleccionar tipo</option>
+                            </select>
+                        </div>
+                        <div class="secctionTotal">
+                            <div>
+                                <h5 id="textTotal">Total: $0</h5>
+                                <h5 id="textoDescuento" class="d-none">Descuento del 10%</h5>
+                            </div>
+                            <div class="btnAgregarPagar">
+                                <div>
+                                    <button id="buttonSelectCafe" onclick="agregar_al_carro()" class="btn btn-warning">Agregar pedido</button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-success">Pagar cuenta</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

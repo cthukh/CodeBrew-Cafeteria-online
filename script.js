@@ -65,7 +65,7 @@ function render_carousel_opciones() {
         textSlide.classList.add('col-4');
         
         const h2 = document.createElement('h2');
-        h2.textContent = producto.nombre;
+        h2.textContent = producto.nombre + ` $${producto.precio}`;
 
         const p = document.createElement('p')
         p.textContent = producto.desc;
@@ -83,7 +83,7 @@ function render_carousel_opciones() {
 
         const option = document.createElement('option');
         option.value = producto.id;
-        option.text = producto.nombre;
+        option.text = producto.nombre + ` - $${producto.precio}`;;
         
         select.append(option);
     }
@@ -96,8 +96,10 @@ render_carousel_opciones()
 // Carrito de compras
 let carrito = [ ];
 let contadorProductos = 0;
-let total = 0;
 let coincidencia = false;
+let total = 0;
+
+const textoTotal = document.getElementById('textTotal');
 
 function agregar_al_carro() {
     const listaProductos = document.getElementById('listaProductos');
@@ -140,7 +142,18 @@ function agregar_al_carro() {
                         if (producto.nombre == productoInCarrito.nombre) {
                             coincidencia = true
                             console.log("Carrito con productos. Se encontra ya un producto en el carro: "+producto.nombre )
-                            modificar_cantidad(producto)
+                            console.log("Producto ya en el carro. Modificando cantidad...")
+                            producto.cantidad = producto.cantidad + 1;
+                            let id_cant = 'CantidadId'+producto.id;
+                            const colCant = document.getElementById(id_cant);
+                            colCant.innerHTML = producto.cantidad;
+                            
+                            producto.subTotal = producto.precio * producto.cantidad;
+                            console.log("Mostrando sub total del producto "+producto.nombre+" sub-total: "+producto.subTotal)
+                            let id_sub = 'SubTotalId'+producto.id;
+                            const colSub = document.getElementById(id_sub);
+                            colSub.innerHTML = producto.subTotal;
+
                             break
                             
                         } else {
@@ -155,10 +168,11 @@ function agregar_al_carro() {
                         break
                     };
                 };
+                
             };
         };
-    console.log(carrito)
-    console.log("fin funcion ------------------------")
+        calcularTotal();
+        console.log("fin funcion ------------------------")
 
 
     } else { // Sin valor
@@ -167,21 +181,6 @@ function agregar_al_carro() {
     };
 };
 
-
-function modificar_cantidad(producto) {
-    console.log("Producto ya en el carro. Modificando cantidad...")
-
-    producto.cantidad = producto.cantidad + 1;
-    let id_cant = 'CantidadId'+producto.id;
-    const colCant = document.getElementById(id_cant);
-    colCant.innerHTML = producto.cantidad;
-    
-    producto.subTotal = producto.precio * producto.cantidad;
-    console.log("Mostrando sub total del producto "+producto.nombre+" sub-total: "+producto.subTotal)
-    let id_sub = 'SubTotalId'+producto.id;
-    const colSub = document.getElementById(id_sub);
-    colSub.innerHTML = producto.subTotal;
-};
 
 function agregar_producto(producto,tabla) {
     console.log("Producto no encontrado en carrito. Agregando...")
@@ -197,6 +196,7 @@ function agregar_producto(producto,tabla) {
     divElim.id = 'btnElim'+producto.id;
     divElim.addEventListener('click', () => {
         eliminar_cantidad(producto);
+        
     });
 
     divElim.innerHTML = `<i class="fa-solid fa-trash"></i>`;
@@ -222,19 +222,48 @@ function agregar_producto(producto,tabla) {
     tabla.append(fila);
 
     carrito.push(producto);
+    // total = total + producto.subTotal
 };
 
+
+function calcularTotal() {
+    const textoDesc = document.getElementById('textoDescuento')
+    let totalAcumulado = 0;
+    
+    for (let i = 0; i < carrito.length; i++) {
+
+        totalAcumulado += carrito[i].precio * carrito[i].cantidad;
+    }
+
+    if (totalAcumulado >= 10000) {
+        totalAcumulado = totalAcumulado * 0.90;
+        textoDesc.classList.remove('d-none')
+    } else {
+        
+        textoDesc.classList.add('d-none')
+    }
+    
+    total = totalAcumulado; 
+    textoTotal.innerHTML = `Total: $${total}`;
+}
 
 
 function eliminar_cantidad(producto) {
     console.log("Cantidad antigua: "+producto.cantidad)
     producto.cantidad--;
 
-    let id_cant = 'CantidadId'+producto.id;
-    const colCant = document.getElementById(id_cant);
-    colCant.innerHTML = producto.cantidad;
-    console.log("Funcion: eliminar_cantidad: "+producto.nombre)
-    console.log("Nueva cantidad: "+ producto.cantidad)
+    if (producto.cantidad > 0) {
+        let id_cant = 'CantidadId'+producto.id;
+        const colCant = document.getElementById(id_cant);
+        colCant.innerHTML = producto.cantidad;
+
+        // Actualizamos su subtotal en el objeto y en la tabla
+        producto.subTotal = producto.precio * producto.cantidad;
+        let id_sub = 'SubTotalId'+producto.id;
+        const colSub = document.getElementById(id_sub);
+        colSub.innerHTML = producto.subTotal;
+    }
+
     if (producto.cantidad <= 0) {
         for (let car = 0; car < carrito.length; car++) {
             const prodc = carrito[car];
@@ -244,23 +273,24 @@ function eliminar_cantidad(producto) {
                 let id = "Fila"+producto.id;
                 const fila = document.getElementById(id);
                 fila.remove();
+                
                 carrito.splice(car, 1);
-                producto.cantidad = 1;
-                car--;
-                break
+                producto.cantidad = 1; 
+                producto.subTotal = 0;
+                break;
             };
         };
     };
+
+    calcularTotal();
+
+    // Verificación de carrito vacío
     if (carrito.length <= 0) {
         const lista = document.getElementById('listaProductos');
         const texto = document.getElementById('TextOtter');
-
         if (lista.classList != 'd-none') {
             lista.classList.add('d-none');
-        
         };
         texto.classList.remove('d-none')
-    };
-
-
-};
+    }
+}

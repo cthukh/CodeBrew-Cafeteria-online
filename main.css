@@ -108,6 +108,29 @@ body {
 }
 
 
+.divTotalTipos {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.secctionTotal {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btnAgregarPagar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 50%;
+    align-items: center;
+}
+
+
 footer {
     text-align: center;
 }
@@ -158,6 +181,7 @@ footer {
     }
 
     .orden {
+        height: auto;
         width: 80vw;
         height: 50%;
     }
