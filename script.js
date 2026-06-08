@@ -187,19 +187,29 @@ function agregar_producto(producto,tabla) {
     console.log("Producto no encontrado en carrito. Agregando...")
     let subTotal = producto.precio * producto.cantidad;
     producto.subTotal = subTotal;
-    contadorProductos ++
+    contadorProductos ++;
 
     const fila = document.createElement('tr');
+    fila.id = "Fila"+producto.id;
 
-    const colNum = document.createElement('td');
-    colNum.textContent = contadorProductos;
+    const divElim = document.createElement('button');
+    divElim.classList.add('btn','btn-danger','divElimBtn');
+    divElim.id = 'btnElim'+producto.id;
+    divElim.addEventListener('click', () => {
+        eliminar_cantidad(producto);
+    });
 
-    const colNombre = document.createElement('td');
-    colNombre.textContent = producto.nombre;
+    divElim.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+    const colElim = document.createElement('td');
+    colElim.classList.add('tdElim');
+    colElim.append(divElim);
 
     const colCantidad = document.createElement('td');
     colCantidad.id = 'CantidadId'+producto.id;
     colCantidad.textContent = producto.cantidad;
+
+    const colNombre = document.createElement('td');
+    colNombre.textContent = producto.nombre;
 
     const colPrecio = document.createElement('td');
     colPrecio.textContent = producto.precio;
@@ -208,8 +218,49 @@ function agregar_producto(producto,tabla) {
     colSubTotal.id = 'SubTotalId'+producto.id
     colSubTotal.textContent = producto.subTotal;
 
-    fila.append(colNum, colNombre, colCantidad, colPrecio, colSubTotal);
+    fila.append(colElim, colCantidad, colNombre, colPrecio, colSubTotal);
     tabla.append(fila);
 
     carrito.push(producto);
+};
+
+
+
+function eliminar_cantidad(producto) {
+    console.log("Cantidad antigua: "+producto.cantidad)
+    producto.cantidad--;
+
+    let id_cant = 'CantidadId'+producto.id;
+    const colCant = document.getElementById(id_cant);
+    colCant.innerHTML = producto.cantidad;
+    console.log("Funcion: eliminar_cantidad: "+producto.nombre)
+    console.log("Nueva cantidad: "+ producto.cantidad)
+    if (producto.cantidad <= 0) {
+        for (let car = 0; car < carrito.length; car++) {
+            const prodc = carrito[car];
+            if (prodc.nombre == producto.nombre) {
+                console.log("Eliminando registro de carrito: "+prodc.nombre)
+                
+                let id = "Fila"+producto.id;
+                const fila = document.getElementById(id);
+                fila.remove();
+                carrito.splice(car, 1);
+                producto.cantidad = 1;
+                car--;
+                break
+            };
+        };
+    };
+    if (carrito.length <= 0) {
+        const lista = document.getElementById('listaProductos');
+        const texto = document.getElementById('TextOtter');
+
+        if (lista.classList != 'd-none') {
+            lista.classList.add('d-none');
+        
+        };
+        texto.classList.remove('d-none')
+    };
+
+
 };

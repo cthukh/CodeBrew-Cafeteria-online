@@ -94,6 +94,20 @@ body {
 }
 
 
+.tdElim {
+    text-align: center;
+    align-items: center;
+    height: auto;
+}
+
+.divElimBtn {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    height: 70%;
+}
+
+
 footer {
     text-align: center;
 }
