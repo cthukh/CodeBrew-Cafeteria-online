@@ -82,6 +82,21 @@
                         Pide tu café para empezar el día, relajarse un momento, o simplemente disfrutar de la vida </br></br>
                         <i class="fa-solid fa-otter display-6"></i>
                     </p>
+                    <div class="listaProductos d-none" id="listaProductos">
+                        <table class="table table-bordered table-warning">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">SubTotal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaDatos">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div class="containerOrdenar orden rounded-3 p-3 col-5">
@@ -90,7 +105,7 @@
                         <select id="inputCafe" class="form-select mt-2">
                             <option selected disabled>Seleccionar tipo</option>
                         </select>
-                        <button id="buttonSelectCafe" class="btn btn-warning mt-5">Subir pedido</button>
+                        <button id="buttonSelectCafe" onclick="agregar_al_carro()" class="btn btn-warning mt-5">Agregar pedido</button>
                     </div>
                 </div>
             </div>
