@@ -154,6 +154,10 @@ function agregar_al_carro() {
                             const colSub = document.getElementById(id_sub);
                             colSub.innerHTML = producto.subTotal;
 
+                            if (producto.cantidad > 10) {
+                                alert("Mucho café hace mal...")
+                            }
+
                             break
                             
                         } else {
